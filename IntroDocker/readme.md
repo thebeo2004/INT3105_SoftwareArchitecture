@@ -2,6 +2,7 @@
 
 Access to the container via SSH:
 > ssh root@localhost -p 2222
+
 Access via VNC Viewer:
 > localhost:5901
 
