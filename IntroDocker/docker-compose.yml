@@ -1,0 +1,9 @@
+version: '3'
+services:
+  docker-intro:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5901:5901" # Map port VNC container (5901) to HOST (5901)
+      - "2222:22"  #Map port SSH container (22) to HOST (2222)
