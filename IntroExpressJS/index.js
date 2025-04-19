@@ -9,14 +9,9 @@ app.get('/', (req, res) => {
     res.send('Hello, World')
 })
 
-// Define a simple route
-app.get('/about', (req, res) => {
-    res.send('This is about route')
-})
-
-// About Route
-app.get('/contact', (req, res) => {
-    res.send('This is contact route')
+app.get('/user/:username', (req, res) => {
+    const username = req.params.username;
+    res.send(`Welcome ${username}`)
 })
 
 app.listen(PORT, () => {
