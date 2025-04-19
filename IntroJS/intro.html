@@ -1,0 +1,25 @@
+<head>
+
+</head>
+Nhập tên: <input id="input">
+<br>
+<button onclick="greeting()">OK</button>
+<div id="greeting"></div>
+<script>
+
+    var greeting = function() {
+        var name = document.getElementById("input").value;
+        var greeting = "Hello " + name;
+        document.getElementById("greeting").innerHTML = greeting;
+    }
+
+    var notify = function() {
+        document.getElementById("greeting").innerHTML += "<br>Time out"
+    }
+
+    setTimeout(notify, 3000)
+    document.getElementById("greeting").innerHTML = "Hello, World!"
+
+    localStorage.name = "Vu Nguyen Coder"
+    localStorage.address = "Ha Noi"
+</script>
