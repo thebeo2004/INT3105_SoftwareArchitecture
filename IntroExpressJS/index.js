@@ -12,18 +12,27 @@ app.get('/', (req, res) => {
 
 app.use('/user', router)
 
-app.post('/users', express.json(), (req, res) => {
+app.use(express.json())
+
+app.post('/users', (req, res) => {
     const {name, email} = req.body 
     res.json({
         message: `User ${name} with email ${email} created successfully`
     })
 })
 
-app.put('/users/:id', express.json(), (req, res) => {
+app.put('/users/:id', (req, res) => {
     const userId = req.params.id;
     const {name, email} = req.body 
     res.json({
         message: `User ${userId} updated to '${name}, ${email}`
+    })
+})
+
+app.delete('/users/:id', (req, res) => {
+    const userId = req.params.id;
+    res.json({
+        messge: `User with ID ${userId} deleted successfully`
     })
 })
 
