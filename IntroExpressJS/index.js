@@ -1,4 +1,5 @@
 import express, { Router } from 'express'
+import { searchController, usernameController } from './controller.js';
 
 const app = express();
 
@@ -10,16 +11,10 @@ app.get('/', (req, res) => {
 })
 
 // Define a dynamic route
-app.get('/user/:username', (req, res) => {
-    const username = req.params.username;
-    res.send(`Welcome ${username}`)
-})
+app.get('/user/:username', usernameController)
 
 // Define a query route: search?keyword=express
-app.get('/search', (req, res) => {
-    const keyword = req.query.keyword;
-    res.send(`Searching for ${keyword}`);
-})
+app.get('/search', searchController)
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://locahost:${PORT}`)
