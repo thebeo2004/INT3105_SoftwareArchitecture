@@ -6,12 +6,18 @@ const app = express();
 const PORT = 3000;
 
 app.use((req, res, next) => {
-    console.log('A new req received at ' + Date.now());
-    next();
+    console.log('Start')
+
+    res.on('finish', () => {
+        console.log('End')
+    })
+
+    next()
 })
 
 // Define a simple route
 app.get('/', (req, res) => {
+    console.log('Middle')
     res.send('Hello, World')
 })
 
