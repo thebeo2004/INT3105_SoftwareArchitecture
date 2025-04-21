@@ -14,7 +14,10 @@ app.get('/', (req, res) => {
 
 })
 
-app.post('/person',express.json(), async (req, res) => {
+app.use(express.json())
+
+// Upload data
+app.post('/person', async (req, res) => {
     const {email, name, age} = req.body
     const newPerson = new Person({
         name,
@@ -24,6 +27,18 @@ app.post('/person',express.json(), async (req, res) => {
     await newPerson.save()
     console.log(newPerson)
     res.send("Person added");
+})
+
+// Update data
+app.put('/person', async (req, res) => {
+    const {email} = req.body
+
+    const personData = await Person.find({
+        email
+    })
+
+    console.log(personData)
+    res.send('Update data successfully')
 })
 
 app.listen(PORT, () => {
