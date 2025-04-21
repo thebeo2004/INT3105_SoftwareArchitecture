@@ -10,10 +10,16 @@ app.use(cookieParser())
 // Define a simple route
 app.get('/', (req, res) => {
     
-    res.cookie('name', 'express-app')
+    // Adding cookie exipry ~ 6 minutes
+    res.cookie('name', 'express-app', {maxAge: 360000})
 
     res.send('Hello Express')
 
+})
+
+app.get('/remove-cookie', (req, res) => {
+    res.clearCookie('name')
+    res.send('Cookie removed successfully')
 })
 
 app.get('/fetch', (req, res) => {
