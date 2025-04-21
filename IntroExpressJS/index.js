@@ -41,6 +41,13 @@ app.put('/person', async (req, res) => {
     res.send('Update data successfully')
 })
 
+// Deleting Data from MongoDb
+app.delete('/person/:id', async (req, res) => {
+    const {id} = req.params
+    await Person.findByIdAndDelete(id)
+    res.send("Deleted object successfully")
+})
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
 })
