@@ -1,11 +1,6 @@
 import express, { Router } from 'express'
 import router from './route.js';
-
-const app = express();
-
-const PORT = 3000;
-
-app.use('/public',express.static('public'))
+import { storage } from './config/multer.js';
 
 // Define a simple route
 app.get('/', (req, res) => {
