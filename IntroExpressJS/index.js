@@ -5,17 +5,14 @@ const app = express();
 
 const PORT = 3000;
 
-// Set EJS as the view engine
-app.set('view engine', 'ejs')
+app.use('/public',express.static('public'))
 
 // Define a simple route
 app.get('/', (req, res) => {
     
-    const userName = 'John Doe'
-    res.render('index', {userName})
+    res.send('Hello Express')
 
 })
-
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
