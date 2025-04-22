@@ -11,38 +11,39 @@ app.get('/', (req, res) => {
     res.send('Hello Express')
 })
 
-// GET All Product
-app.get('/api/products', (req, res) => {
-    const products = [
-        {id: 1, name: 'Laptop', price: 1000},
-        {id: 2, name: 'Mobile', price: 500},
-    ]
-
-    res.status(200).json({products})
+process.on("uncaughtException", (err) => {
+    console.log(err)
+    process.exit(1)
 })
 
-// Get a Single Product
-app.get('/api/products/:id', (req, res) => {
-    const products = [
-        {id: 1, name: 'Laptop', price: 1000},
-        {id: 2, name: 'Mobile', price: 500},
-    ]
+process.on('unhandledRejection', (reason, promise) => {
+    console.log(reason);
+    
+})
 
-    const product = products.find(p => p.id === Number(req.params.id))
-
-    if (!product) {
-        return res.status(404).json({message: 'Product Not Found'})
-    } 
-
-    res.status(200).json({product})
+// Synchronous Error
+app.get('/synchronous', (req, res, next) => {
+    try {
+        throw new Error('Something went wrong!')
+    } catch (error) {
+        next(error)
+    }
 
 })
 
-//Create a new product
-app.post('/api/products', (req, res) => {
-    const newProduct = req.body 
-    newProduct.id = Date.now()
-    res.status(201).json({newProduct})
+// Asynchronous 
+app.get('/asynchronous', async (req, res, next) => {
+    try {
+        await Promise.reject(new Error('Async error occured'))
+    } catch (error) {
+        next(error)
+    }
+})
+
+app.use((err, req, res, next) => {
+    console.error(err.message)
+    console.log(err.stack)
+    res.status(500).json({message:err.message})
 })
 
 app.listen(PORT, () => {
