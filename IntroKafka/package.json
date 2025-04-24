@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:producer": "node ./producer/index.js",
+    "start:consumer": "node ./consumer/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "kafkajs": "^2.2.4"
+  }
 }
