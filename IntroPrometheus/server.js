@@ -26,5 +26,5 @@ app.get('/flip-coints', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Started Server. Server is runnint at PORT ${PORT}`);
+    console.log(`Started Server. Server is running at PORT ${PORT}`);
 })
