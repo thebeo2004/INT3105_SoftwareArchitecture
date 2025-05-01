@@ -35,6 +35,7 @@ app.get('/flip-coints', (req, res) => {
     const times = req.query.times;
 
     if (times && times > 0) {
+        flipsCount.inc(Number(times));
         let heads = 0;
         let tails = 0;
 
@@ -47,6 +48,8 @@ app.get('/flip-coints', (req, res) => {
             }
         }
 
+        headsCount.inc(heads);
+        tailsCount.inc(tails);
         res.json({heads, tails});
     } else {
         res.send('Hello! I work!!')
