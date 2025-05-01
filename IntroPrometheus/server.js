@@ -2,7 +2,7 @@ import express, { response } from "express";
 import { Registry, Counter, collectDefaultMetrics, Histogram } from "prom-client";
 
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 
 const register = new Registry();
 
