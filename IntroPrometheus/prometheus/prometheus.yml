@@ -1,0 +1,24 @@
+# my global config
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: "codelab-monitor"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus' # Sử dụng dấu nháy đơn cho nhất quán
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'docker'
+    static_configs:
+      - targets: ['host.docker.internal:9323']
+
+  # Thêm job để scrape coin-api (giả định metrics ở /metrics)
+  - job_name: 'coin-api'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['coin-api:3000']
